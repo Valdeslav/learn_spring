@@ -1,0 +1,25 @@
+version: '3'
+services:
+
+  db:
+    container_name: "ormdb"
+    image: postgres:10
+#    build: ./db/
+#    volumes:
+#     - postgres-volume:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+     - "5432:5432"
+    environment:
+     - POSTGRES_USER=orm_user
+     - POSTGRES_PASSWORD=orm_user
+     - POSTGRES_DB=orm_db
+     - POSTGRES_ADMIN_PASSWORD=postgres
+
+     - POSTGRESQL_USER=orm_user
+     - POSTGRESQL_PASSWORD=orm_user
+     - POSTGRESQL_DATABASE=orm_db
+     - POSTGRESQL_ADMIN_PASSWORD=postgres
+
+volumes:
+  postgres-volume:

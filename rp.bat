@@ -1,0 +1,2 @@
+call r.bat
+call docker_connect_to_postgres
