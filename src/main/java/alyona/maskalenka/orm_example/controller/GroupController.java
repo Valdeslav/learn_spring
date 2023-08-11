@@ -3,8 +3,9 @@ package alyona.maskalenka.orm_example.controller;
 import alyona.maskalenka.orm_example.dto.StudGroupDTO;
 import alyona.maskalenka.orm_example.dto.StudentDTO;
 import alyona.maskalenka.orm_example.entity.StudGroup;
-import alyona.maskalenka.orm_example.entity.Student;
+import alyona.maskalenka.orm_example.service.GroupService;
 import alyona.maskalenka.orm_example.service.StudentService;
+import alyona.maskalenka.orm_example.service.mapper.GroupMapper;
 import alyona.maskalenka.orm_example.service.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,23 +18,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/student")
-public class StudentController {
+@RequestMapping("/group")
+public class GroupController {
     @Autowired
-    private StudentService studentService;
+    private GroupService groupService;
     @Autowired
-    public StudentMapper studentMapper;
+    public GroupMapper groupMapper;
 
     @GetMapping
-    public List<StudentDTO> getAll() {
-        return studentService.findAll().stream()
-                .map(studentMapper::toDto)
+    public List<StudGroupDTO> getAll() {
+        return groupService.findAll().stream()
+                .map(groupMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
-    public StudentDTO create(@RequestBody StudentDTO studentDTO) {
-        Student student = studentMapper.toEntity(studentDTO);
-        return studentMapper.toDto(studentService.save(student));
+    public StudGroupDTO create(@RequestBody StudGroupDTO studGroupDTO) {
+        StudGroup studGroup = groupMapper.toEntity(studGroupDTO);
+        return groupMapper.toDto(groupService.save(studGroup));
     }
 }

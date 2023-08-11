@@ -9,7 +9,7 @@
         <createSequence sequenceName="hibernate_sequence" startValue="1000" incrementBy="50"/>
     </changeSet>
     <changeSet id="2" author="vtsarenko">
-        <createTable tableName="group" remarks="/">
+        <createTable tableName="stud_group" remarks="/">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -33,14 +33,14 @@
             </column>
 
             <column name="group_id" type="bigint">
-                <constraints unique="true" nullable="false"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="group_id"
                                  baseTableName="student"
                                  constraintName="fk_student_group_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="group"/>
+                                 referencedTableName="stud_group"/>
     </changeSet>
 
 </databaseChangeLog>
